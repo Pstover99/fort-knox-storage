@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fort Knox Self-Storage — Tenant portal</title>
+<style>:root{--wall:#1f2a33;--panel:#f4f6f7;--ink:#1a2026;--ink-soft:#5b6b78;
+--rollup:#e08a1e;--rollup-dark:#c2740f;--line:#d3dadf;--steel:#8a9aa6;--concrete:#eceff1}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--concrete);color:var(--ink);
+font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;
+gap:.5rem 1.5rem;background:var(--wall);padding:1rem 1.25rem;
+border-bottom:4px solid var(--rollup)}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.3rem;
+letter-spacing:.02em;color:#fff;text-decoration:none}
+.brand span{display:inline-grid;place-items:center;width:2rem;height:2rem;border-radius:5px;
+background:var(--rollup);color:var(--wall);font-weight:900}
+nav a{color:#c7d2da;margin-left:1.1rem;text-decoration:none;font-weight:600;font-size:.95rem}
+nav a:hover,nav a:focus-visible{color:var(--rollup)}
+main{max-width:54rem;margin:0 auto;padding:1.75rem 1.25rem 3rem}
+h1{font-size:1.9rem;font-weight:800;line-height:1.15;margin:0 0 .5rem}
+.sub{color:var(--ink-soft);margin:0 0 1.5rem}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.5rem}
+label{display:block;font-weight:600;margin:1rem 0 .3rem}
+input{width:100%;padding:.6rem .7rem;font:inherit;border:1px solid var(--steel);
+border-radius:5px;background:#fff}
+button{margin-top:1.3rem;padding:.7rem 1.5rem;font:inherit;font-weight:700;color:var(--wall);
+background:var(--rollup);border:0;border-radius:5px;cursor:pointer}
+button:hover{background:var(--rollup-dark)}
+:is(a,input,button):focus-visible{outline:3px solid var(--rollup);outline-offset:2px}
+.error{color:#b3261e;font-weight:600;margin:1rem 0 0}
+.muted{color:var(--ink-soft)}
+.warn{background:#fff3d6;border:1px solid var(--rollup);padding:.75rem 1rem;border-radius:6px;margin-bottom:1rem}
+table{width:100%;border-collapse:collapse}
+caption{text-align:left;font-weight:700;padding:0 0 .6rem}
+th,td{text-align:left;padding:.6rem .5rem;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--ink-soft);font-size:.9rem}
+.tag{display:inline-block;padding:.1rem .5rem;border-radius:999px;font-size:.8rem;font-weight:600}
+.paid{background:#d9f0e0;color:#12683a}.due{background:#fbe0d6;color:#a5341a}
+.out{display:block;margin-top:1rem;padding:1rem;font-size:1.1rem;
+font-family:ui-monospace,Menlo,Consolas,monospace;background:#fff3d6;
+border:1px dashed var(--rollup-dark);border-radius:6px;overflow-wrap:anywhere}
+.locked{border-left:5px solid var(--rollup)}
+.login{display:grid;grid-template-columns:minmax(0,23rem) auto;gap:2.5rem;align-items:start}
+.sign{width:14rem;margin-top:2rem;padding:1rem 1.1rem 1.3rem;background:#fff3d6;border:1px solid var(--rollup);
+border-radius:4px;box-shadow:2px 5px 0 rgba(31,42,51,.15);font-size:.98rem;line-height:1.5}
+.sign b{display:block;text-transform:uppercase;letter-spacing:.05em;font-size:.8rem;color:var(--rollup-dark);margin-bottom:.4rem}
+@media (max-width:42rem){.login{grid-template-columns:1fr}.sign{margin:0}}
+[hidden]{display:none!important}</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="#/"><span>51</span>Fort Knox Self-Storage</a>
+  <nav id="n" hidden><a href="#/dashboard">My units</a><a href="#/vault">Manager office</a><a href="#/logout">Sign out</a></nav>
+</header>
+<main>
+  <p id="w" class="warn" hidden></p>
+
+  <div id="v0" class="login" hidden>
+    <section class="panel">
+      <h1>Tenant portal</h1>
+      <p class="sub">Sign in to view your units and billing.</p>
+      <form id="f">
+        <label for="username">Username</label>
+        <input id="username" autocomplete="username" required>
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+        <button type="submit">Sign in</button>
+      </form>
+      <p id="x" class="error" role="alert" hidden>Wrong username or password. Walk-in tenants can use the shared kiosk login on the front desk card.</p>
+    </section>
+    <aside class="sign">
+      <b>Front desk</b>
+      Kiosk login for walk-in tenants:<br>user: guest<br>pass: guest<br><br>Manager office is staff only!
+    </aside>
+  </div>
+
+  <div id="v1" hidden>
+    <h1>My units</h1>
+    <p class="sub">Signed in as <strong class="r"></strong>.</p>
+    <section class="panel"><table>
+      <caption>Units on your account</caption>
+      <thead><tr><th>Unit</th><th>Size</th><th>Climate</th><th>Balance</th></tr></thead>
+      <tbody>
+        <tr><td>A-014</td><td>5 x 5</td><td>No</td><td><span class="tag paid">Paid</span></td></tr>
+        <tr><td>B-107</td><td>10 x 10</td><td>Yes</td><td><span class="tag due">$85 due</span></td></tr>
+        <tr><td>C-233</td><td>10 x 20</td><td>Yes</td><td><span class="tag paid">Paid</span></td></tr>
+        <tr><td>D-041</td><td>5 x 10</td><td>No</td><td><span class="tag paid">Paid</span></td></tr>
+      </tbody>
+    </table></section>
+  </div>
+
+  <section id="v2" class="panel locked" hidden>
+    <h1>Manager office</h1>
+    <p>You're signed in as <strong class="r"></strong>. The office is restricted to the <strong>admin</strong> account.</p>
+    <p class="muted">Head back to <a href="#/dashboard">my units</a>.</p>
+  </section>
+
+  <section id="v3" class="panel locked" hidden>
+    <h1>Manager office</h1>
+    <p>Signed in as <strong class="r"></strong>. Master gate code for Unit 51:</p>
+    <span id="o" class="out"></span>
+  </section>
+</main>
+<script>!function(){var t,n,e=function(t,n){return t.match(/../g).map(function(t){return parseInt(t,16)^n})},r=String.fromCharCode.apply(null,e("2835363f263635393b36092e35283b3d3f263d3f2e132e3f3726293f2e132e3f3726283f37352c3f132e3f37263b2e353826382e353b263d2f3f292e260e3233297a3828352d293f287a3836353931297a293b2c33343d7a3e3b2e3b7a3c35287a3c33363f297a352a3f343f3e7a3c2835377a23352f287a3935372a2f2e3f28747a152a3f347a2e3233297a3c33363f7a33347a19322835373f767a1f3e3d3f767a35287a1c33283f3c352274260475013b77206a7763050771757e267536353d352f2e267536353d333426752c3b2f362e26753e3b293238353b283e26292e35283b3d3f26293f2929333534092e35283b3d3f263b2f2e32",90)).split("|"),u=window,l={},o={};try{(t=u[r[1]])[r[3]]("_","1"),t[r[4]]("_")}catch(n){t=null}try{(n=u[r[15]])[r[3]]("_","1"),n[r[4]]("_")}catch(t){n=null}if(!t){var i=document.getElementById("w");i.textContent=r[8],i.hidden=!1}function d(){var n,e=(n=r[0],t?t[r[2]](n):l[n]||null);if(!e)return null;try{return u[r[5]](e.trim()).trim()||null}catch(t){return null}}function a(t){var n=e("1e84622716e7a47a1cb5b040b1eeb0cae97c85316b977da3a9f8da970d",0),u=function(t,n){var e,r=2166136261,u=[],l=(new TextEncoder).encode(t);for(e=0;e<l.length;e++)r^=l[e],r=Math.imul(r,16777619)>>>0;var o=r||1;for(e=0;e<n;e++)o^=o<<13>>>0,o>>>=0,o^=o>>>17,o^=o<<5>>>0,o>>>=0,u.push(255&o);return u}(t,n.length),l=String.fromCharCode.apply(null,n.map(function(t,n){return t^u[n]}));return new RegExp(r[9]).test(l)?l:null}var c=["v0","v1","v2","v3"];function m(t,n){c.forEach(function(n,e){document.getElementById(n).hidden=e!==t}),document.getElementById("n").hidden=0===t,document.querySelectorAll(".r").forEach(function(t){t.textContent=n||""})}function f(){var e,u=location.hash.slice(1)||"/",i=d(),c="1"===(e=r[16],n?n[r[2]](e):o[e]||null);if(u===r[10])return function(t){n?n[r[4]](t):delete o[t]}(r[16]),function(n){t?t[r[4]](n):delete l[n]}(r[0]),void(location.hash="#"+r[11]);if(!c)return m(0),void(u!==r[11]&&history.replaceState(null,"","#"+r[11]));if(u!==r[12])m(1,r[7]),u!==r[13]&&history.replaceState(null,"","#"+r[13]);else{var f=a(i);f?(document.getElementById("o").textContent=f,m(3,i)):m(2,i)}}document.getElementById("f").addEventListener("submit",function(e){e.preventDefault();var i,d,a=document.getElementById("username").value.trim(),c=document.getElementById("password").value;a===r[7]&&c===r[7]?(i=r[16],d="1",n?n[r[3]](i,d):o[i]=String(d),function(n,e){t?t[r[3]](n,e):l[n]=String(e)}(r[0],u[r[6]](a)),document.getElementById("x").hidden=!0,location.hash="#"+r[13]):document.getElementById("x").hidden=!1}),u.addEventListener("hashchange",f),u.addEventListener(r[14],f),f()}();</script>
+</body>
+</html>
