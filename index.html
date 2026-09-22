@@ -8,6 +8,10 @@
      live under /portal-legacy/ until we pull it. Reminder to update robots.txt
      so search engines stop indexing the retired pages. -->
 <style>*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+:target{animation:flash 1.2s ease-out}
+@keyframes flash{0%{box-shadow:0 0 0 3px var(--rollup,#e08a1e)}100%{box-shadow:0 0 0 3px transparent}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}:target{animation:none;outline:3px solid var(--rollup,#e08a1e)}}
 body{margin:0;min-height:100vh;background:var(--concrete,#eceff1);color:#1a2026;
 font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 :root{--wall:#1f2a33;--panel:#f4f6f7;--ink:#1a2026;--ink-soft:#5b6b78;
@@ -52,20 +56,16 @@ footer{max-width:54rem;margin:0 auto;padding:1rem 1.25rem 3rem;color:var(--ink-s
 @media (max-width:42rem){.login{grid-template-columns:1fr}}</style>
 </head>
 <body>
-<header><a class="brand" href="./"><span>FK</span>Fort Knox Self-Storage</a><nav><a href="./">Home</a><a href="./#pricing">Units &amp; pricing</a><a href="./#login">Tenant login</a></nav></header>
+<header><a class="brand" href="./"><span>FK</span>Fort Knox Self-Storage</a><nav><a href="./">Home</a><a href="./pricing/">Units &amp; pricing</a><a href="./tenant-login/">Tenant login</a></nav></header>
 <main>
   <h1>Store it. Lock it. Forget about it.</h1>
   <p class="sub">Climate-controlled self-storage in three convenient locations. Month to month, no deposit.</p>
-  <div class="grid" id="pricing">
+  <div class="grid">
     <div class="card"><b>5 x 5</b><span class="muted">Closet-sized. From $29/mo.</span></div>
     <div class="card"><b>10 x 10</b><span class="muted">A room's worth. From $89/mo.</span></div>
     <div class="card"><b>10 x 20</b><span class="muted">Garage-sized. From $149/mo.</span></div>
   </div>
-  <section class="panel" id="login">
-    <h2>Tenant login</h2>
-    <p class="muted">Our tenant portal is being upgraded. If you were emailed a link to the new
-    portal, use that. Otherwise please call the front desk.</p>
-  </section>
+  <p class="muted"><a href="./pricing/">See all sizes and reserve &rarr;</a></p>
   <section class="panel" id="promo" style="margin-top:1rem">
     <h2>Unit of the month</h2>
     <p class="muted">Winchester North, climate-controlled 10x10. Straight off our gate camera.</p>

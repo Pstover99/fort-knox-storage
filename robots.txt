@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /portal-legacy/
 Disallow: /maintenance/
+Disallow: /promo-2019/

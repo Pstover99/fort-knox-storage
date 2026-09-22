@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Not found — Fort Knox Self-Storage</title>
+<title>Tenant login — Fort Knox Self-Storage</title>
 <style>*{box-sizing:border-box}
 html{scroll-behavior:smooth}
 :target{animation:flash 1.2s ease-out}
@@ -53,11 +53,22 @@ footer{max-width:54rem;margin:0 auto;padding:1rem 1.25rem 3rem;color:var(--ink-s
 @media (max-width:42rem){.login{grid-template-columns:1fr}}</style>
 </head>
 <body>
-<header><a class="brand" href="./"><span>FK</span>Fort Knox Self-Storage</a><nav></nav></header>
+<header><a class="brand" href="../"><span>FK</span>Fort Knox Self-Storage</a><nav><a href="../">Home</a><a href="../pricing/">Units &amp; pricing</a><a href="../tenant-login/">Tenant login</a></nav></header>
 <main>
   <section class="panel">
-    <h1>Nothing in this unit</h1>
-    <p class="muted">That page doesn't exist. Head back to the <a href="./">front desk</a>.</p>
+    <h1>Tenant login</h1>
+    <p class="sub">Sign in to pay your bill and manage your units.</p>
+    <form id="tlogin" onsubmit="event.preventDefault();document.getElementById('tl-msg').hidden=false">
+      <label for="tuser">Email</label>
+      <input id="tuser" type="email" autocomplete="username" required>
+      <label for="tpass">Password</label>
+      <input id="tpass" type="password" autocomplete="current-password" required>
+      <button type="submit">Sign in</button>
+      <p id="tl-msg" class="error" role="alert" hidden>We couldn't sign you in. This portal is
+      being migrated — if you were emailed a new portal link, use that instead.</p>
+    </form>
+    <p class="muted small" style="margin-top:1rem"><a href="#">Forgot password?</a>
+    Reset links are emailed to the address on file.</p>
   </section>
 </main>
 </body>

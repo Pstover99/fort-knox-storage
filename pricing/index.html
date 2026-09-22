@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Not found — Fort Knox Self-Storage</title>
+<title>Units & pricing — Fort Knox Self-Storage</title>
 <style>*{box-sizing:border-box}
 html{scroll-behavior:smooth}
 :target{animation:flash 1.2s ease-out}
@@ -53,11 +53,41 @@ footer{max-width:54rem;margin:0 auto;padding:1rem 1.25rem 3rem;color:var(--ink-s
 @media (max-width:42rem){.login{grid-template-columns:1fr}}</style>
 </head>
 <body>
-<header><a class="brand" href="./"><span>FK</span>Fort Knox Self-Storage</a><nav></nav></header>
+<header><a class="brand" href="../"><span>FK</span>Fort Knox Self-Storage</a><nav><a href="../">Home</a><a href="../pricing/">Units &amp; pricing</a><a href="../tenant-login/">Tenant login</a></nav></header>
 <main>
+  <h1>Units &amp; pricing</h1>
+  <p class="sub">Reserve online and hold your unit for 48 hours. No deposit.</p>
   <section class="panel">
-    <h1>Nothing in this unit</h1>
-    <p class="muted">That page doesn't exist. Head back to the <a href="./">front desk</a>.</p>
+    <table>
+      <thead><tr><th>Size</th><th>Best for</th><th>Monthly</th><th></th></tr></thead>
+      <tbody>
+        <tr><td>5 x 5</td><td>Boxes, seasonal gear</td><td>$29</td><td><span class="tag paid">Available</span></td></tr>
+        <tr><td>5 x 10</td><td>1-bedroom apartment</td><td>$49</td><td><span class="tag paid">Available</span></td></tr>
+        <tr><td>10 x 10</td><td>2-bedroom home</td><td>$89</td><td><span class="tag paid">Available</span></td></tr>
+        <tr><td>10 x 20</td><td>House + vehicle</td><td>$149</td><td><span class="tag due">Waitlist</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="panel" style="margin-top:1rem">
+    <h2>Reserve a unit</h2>
+    <form id="reserve" onsubmit="return false">
+      <label for="size">Unit size</label>
+      <select id="size" name="size">
+        <option value="5x5">5 x 5 — $29/mo</option>
+        <option value="5x10">5 x 10 — $49/mo</option>
+        <option value="10x10">10 x 10 — $89/mo</option>
+        <!-- premium tier is staff-only until the public launch -->
+        <option value="10x20" disabled data-tier="premium">10 x 20 — $149/mo (staff reservation)</option>
+      </select>
+      <label for="promo">Promo code</label>
+      <input id="promo" name="promo" placeholder="e.g. SUMMER2019">
+      <!-- TODO before launch: connect this form to /reserve endpoint (not built yet) -->
+      <input type="hidden" name="staff_override" value="/hidden_fields_arent_hidden_from_you/">
+      <button type="submit">Reserve</button>
+      <p id="reserve-msg" class="muted small" style="margin-top:1rem">
+        Online reservation isn't live yet — please call the front desk at (540) 555-0142 to finish.
+      </p>
+    </form>
   </section>
 </main>
 </body>
