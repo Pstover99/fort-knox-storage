@@ -61,13 +61,13 @@ footer{max-width:54rem;margin:0 auto;padding:1rem 1.25rem 3rem;color:var(--ink-s
   <p class="sub">You reached a page that was supposed to be taken offline. Nice recon.</p>
   <section class="panel">
     <h2>Recon flag</h2>
-    <span class="out">/i_read_the_robots_and_walked_in/</span>
+    <span class="out">{i_read_the_robots_and_walked_in}</span>
   </section>
   <section class="panel" style="margin-top:1rem">
     <h2>System notice</h2>
-    <p class="muted small">Automated nightly export is still writing tenant records to this
-    directory. Operations: please move <code>tenants-backup.txt</code> out of the web root
-    before the facility goes public.</p>
+    <p class="muted small">Automated nightly export is still dumping tenant records into
+    this directory as a flat file. Operations: these backups were never meant for the
+    public web root &mdash; pull them before the facility goes live.</p>
   </section>
 </main>
 <footer>Legacy build 2.3.1 &middot; scheduled for removal</footer>
