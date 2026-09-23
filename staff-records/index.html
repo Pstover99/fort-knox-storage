@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Staff records — Fort Knox Self-Storage</title>
+<style>*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+:target{animation:flash 1.2s ease-out}
+@keyframes flash{0%{box-shadow:0 0 0 3px var(--rollup,#e08a1e)}100%{box-shadow:0 0 0 3px transparent}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}:target{animation:none;outline:3px solid var(--rollup,#e08a1e)}}
+body{margin:0;min-height:100vh;background:var(--concrete,#eceff1);color:#1a2026;
+font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+:root{--wall:#1f2a33;--panel:#f4f6f7;--ink:#1a2026;--ink-soft:#5b6b78;
+--rollup:#e08a1e;--rollup-dark:#c2740f;--line:#d3dadf;--steel:#8a9aa6;--concrete:#eceff1}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;
+gap:.5rem 1.5rem;background:var(--wall);padding:1rem 1.25rem;border-bottom:4px solid var(--rollup)}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.3rem;
+letter-spacing:.02em;color:#fff;text-decoration:none}
+.brand span{display:inline-grid;place-items:center;width:2rem;height:2rem;border-radius:5px;
+background:var(--rollup);color:var(--wall);font-weight:900}
+nav a{color:#c7d2da;margin-left:1.1rem;text-decoration:none;font-weight:600;font-size:.95rem}
+nav a:hover,nav a:focus-visible{color:var(--rollup)}
+main{max-width:54rem;margin:0 auto;padding:1.75rem 1.25rem 3rem}
+h1{font-size:1.9rem;font-weight:800;line-height:1.15;margin:0 0 .5rem}
+h2{font-size:1.2rem;margin:1.5rem 0 .5rem}
+.sub{color:var(--ink-soft);margin:0 0 1.5rem}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:1rem;margin:1.5rem 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1.1rem}
+.card b{display:block;font-size:1.4rem}
+label{display:block;font-weight:600;margin:1rem 0 .3rem}
+input{width:100%;padding:.6rem .7rem;font:inherit;border:1px solid var(--steel);border-radius:5px;background:#fff}
+button{margin-top:1.3rem;padding:.7rem 1.5rem;font:inherit;font-weight:700;color:var(--wall);
+background:var(--rollup);border:0;border-radius:5px;cursor:pointer}
+button:hover{background:var(--rollup-dark)}
+:is(a,input,button):focus-visible{outline:3px solid var(--rollup);outline-offset:2px}
+.error{color:#b3261e;font-weight:600;margin:1rem 0 0}
+.muted{color:var(--ink-soft)}.small{font-size:.9rem}
+.banner{background:#fff3d6;border:1px solid var(--rollup);padding:.75rem 1rem;border-radius:6px;margin-bottom:1rem}
+.stop{background:#fbe0d6;border:1px solid #a5341a;color:#7a2814}
+.out{display:block;margin-top:1rem;padding:1rem;font-size:1.1rem;
+font-family:ui-monospace,Menlo,Consolas,monospace;background:#fff3d6;
+border:1px dashed var(--rollup-dark);border-radius:6px;overflow-wrap:anywhere}
+.locked{border-left:5px solid var(--rollup)}
+.login{display:grid;grid-template-columns:minmax(0,23rem) auto;gap:2.5rem;align-items:start}
+.tag{display:inline-block;padding:.1rem .5rem;border-radius:999px;font-size:.8rem;font-weight:600}
+.paid{background:#d9f0e0;color:#12683a}.due{background:#fbe0d6;color:#a5341a}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:.55rem .5rem;border-bottom:1px solid var(--line)}
+th{color:var(--ink-soft);font-size:.9rem}
+footer{max-width:54rem;margin:0 auto;padding:1rem 1.25rem 3rem;color:var(--ink-soft);font-size:.85rem}
+[hidden]{display:none!important}
+@media (max-width:42rem){.login{grid-template-columns:1fr}}</style>
+</head>
+<body>
+<header><a class="brand" href="../"><span>FK</span>Fort Knox Self-Storage</a><nav><a href="../">Home</a><a href="../pricing/">Units &amp; pricing</a><a href="../unit-search/">Find a unit</a><a href="../tenant-login/">Tenant login</a></nav></header>
+<style>#qout{display:block;white-space:pre-wrap;word-break:break-all;background:#1f2a33;color:#c7d2da;padding:.7rem .8rem;border-radius:6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem;margin:.5rem 0 1rem}.ok{color:#12683a;font-weight:600;margin-bottom:.5rem}.err{color:#b3261e;font-weight:600}</style><main>
+  <h1>Staff records portal</h1>
+  <p class="sub">Legacy internal tool. Look up your own staff record by signing in.</p>
+  <section class="panel">
+    <form id="f">
+      <label for="username">Username</label>
+      <input id="username" autocomplete="off" required>
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="off" required>
+      <button type="submit">Look up record</button>
+    </form>
+    <p class="muted small" style="margin-top:1rem">Query sent to the database:</p>
+    <code id="qout">(submit to see the query)</code>
+    <div id="qres"></div>
+  </section>
+  <!-- built in 2014, never patched. input goes straight into the query string. -->
+</main>
+<script>var MODE="auth",UPW="h3lvetica-2014";</script>
+<script>!function(){var e=function(e,n){return e.match(/../g).map(function(e){return parseInt(e,16)^n})},n=String.fromCharCode.apply(null,e("2939323f373b26040621013b77206a776305077106277e",90)).split("|");function t(t){var r=e("4a824f1a4edc9e6a0db9b55db1be81c1c66e842c6b8765afafdeb0c24de1ebff",0),a=function(e,n){var t,r=2166136261,a=[],i=(new TextEncoder).encode(e);for(t=0;t<i.length;t++)r^=i[t],r=Math.imul(r,16777619)>>>0;var u=r||1;for(t=0;t<n;t++)u^=u<<13>>>0,u>>>=0,u^=u>>>17,u^=u<<5>>>0,u>>>=0,a.push(255&u);return a}(t,r.length),i=String.fromCharCode.apply(null,r.map(function(e,n){return e^a[n]}));return new RegExp(n[1]).test(i)?i:null}function r(e){return String(e).replace(/[&<>"']/g,function(e){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[e]})}var a=null;window.addEventListener("DOMContentLoaded",function(){var e=document.getElementById("qout"),n=document.getElementById("qres");if("auth"===MODE){var i=[{username:"marta",password:UPW,role:"admin"},{username:"guest",password:"guest",role:"user"}];document.getElementById("f").addEventListener("submit",function(u){u.preventDefault();var o,s="username = '"+document.getElementById("username").value+"' AND password = '"+document.getElementById("password").value+"'",d="SELECT * FROM users WHERE "+s;e.textContent=d;try{o=i.filter(function(e){return function(e,n){var t=0;function r(){return e[t]}function a(){return e[t++]}function i(e){return function(e){return e&&"'"===e[0]}(e)?function(e){return e.slice(1,-1).replace(/''/g,"'")}(e):/^\d+$/.test(e)?parseInt(e,10):e&&"NULL"===e.toUpperCase()?null:e in n?n[e]:void 0}function u(){if("("===r()){a();var e=s();return")"===r()&&a(),e}var n=a(),t=r();if("="===t||"<"===t||">"===t||">="===t||"<="===t||"<>"===t){a();var u=a(),o=i(n),d=i(u);return"="===t?o==d:"<>"===t?o!=d:"<"===t?o<d:">"===t?o>d:"<="===t?o<=d:o>=d}var c=i(n);return!!c&&0!==c&&"0"!==c}function o(){for(var e=u();r()&&"AND"===r().toUpperCase();)a(),e=u()&&e;return e}function s(){for(var e=o();r()&&"OR"===r().toUpperCase();){a();var n=o();e=e||n}return e}return s()}(function(e){for(var n,t=/\s+|--[^\n]*|#[^\n]*|'(?:[^']|'')*'|<>|>=|<=|[=<>(),*]|[A-Za-z_][A-Za-z0-9_]*|\d+/g,r=[];null!==(n=t.exec(e));){var a=n[0];if(!/^\s+$/.test(a)){if(/^(--|#)/.test(a))break;r.push(a)}}return r}(s),e)})}catch(e){o=[]}o.length?o.some(function(e){return"admin"===e.role})?(a=a||t("admin"),n.innerHTML='<div class="ok">Signed in as <b>'+r(o[0].username)+'</b> (admin). Master record unlocked:</div><span class="out">'+r(a)+"</span>"):n.innerHTML='<div class="ok">Signed in as <b>'+r(o[0].username)+"</b>. No admin records for this account.</div>":n.innerHTML='<div class="err">Invalid username or password.</div>'})}if("union"===MODE){var u=[{id:1,name:"A-014 — Winchester North"},{id:2,name:"B-107 — Winchester North"},{id:3,name:"C-233 — Stephens City"},{id:4,name:"D-041 — Front Royal"}];document.getElementById("f").addEventListener("submit",function(i){i.preventDefault();var o=document.getElementById("q").value,s="SELECT id, name FROM units WHERE name LIKE '%"+o+"%'";e.textContent=s;var d=u.filter(function(e){return e.name.toLowerCase().indexOf(o.toLowerCase())>=0}).map(function(e){return[e.id,e.name]}),c=s.toUpperCase().indexOf("UNION"),m=d,l=2,f=!1;if(c>=0){f=!0;var v=s.slice(c+5).replace(/(--|#)[^\n]*$/,"").trim().match(/^SELECT\s+(.+?)\s+FROM\s+([A-Za-z_][A-Za-z0-9_]*)/i);if(v){var p=v[1].split(",").map(function(e){return e.trim()});l=p.length;var h=v[2].toLowerCase(),E=("units"===h?u:"vault"===h?[{id:0,name:"",secret:a||(a=t("admin"))}]:[]).map(function(e){return p.map(function(n){return/^\d+$/.test(n)?parseInt(n,10):"'"===n[0]?n.slice(1,-1):n in e?e[n]:"NULL"})});m=d.concat(E)}}var g="";f&&2!==l?g='<div class="err">The used SELECT statements have a different number of columns.</div>':(g="<table><thead><tr><th>id</th><th>name</th></tr></thead><tbody>"+m.map(function(e){return"<tr><td>"+r(e[0])+"</td><td>"+r(void 0!==e[1]?e[1]:"")+"</td></tr>"}).join("")+"</tbody></table>",m.length||(g='<div class="muted">No units match your search.</div>')),n.innerHTML=g})}})}();</script>
+</body>
+</html>
